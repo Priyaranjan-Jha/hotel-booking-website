@@ -1,16 +1,16 @@
 let disableLoader = () => {
-  document.getElementById("loader").style.visibility = "hidden";
-  document.getElementsByTagName("body")[0].style.visibility = "visible";
-};
+    document.getElementById("loader").style.visibility = "hidden";
+    document.getElementsByTagName("body")[0].style.visibility = "visible";
+}
 
 let displayLoader = () => {
-  document.getElementsByTagName("body")[0].style.visibility = "hidden";
-  document.getElementById("loader").style.visibility = "visible";
-};
+    document.getElementsByTagName("body")[0].style.visibility = "hidden";
+    document.getElementById("loader").style.visibility = "visible";
+}
 
 // The header template
 let displayHeaderTemplate = () => {
-  let headerTemplate = `<a href="index.html" class="logo">
+    let headerTemplate = `<a href="index.html" class="logo">
         <img src="assests/images/logo.png" id="logo-image" alt="logo"/>
     </a>
     <button type="button" id="login" class="btn btn-light btn-sm" data-toggle="modal" data-backdrop="false" data-target="#login-modal" onclick="mainLogin(event)">LOGIN</button>
@@ -43,12 +43,12 @@ let displayHeaderTemplate = () => {
         </div>
     </div>`;
 
-  document.getElementById("header").innerHTML += headerTemplate;
+    document.getElementById('header').innerHTML += headerTemplate;
 };
 
 // The footer template
 let displayFooterTemplate = () => {
-  let footerTemplate = `<div id="contact">
+    let footerTemplate = `<div id="contact">
         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-backdrop="false" data-target="#contact-modal">Contact Us</button>
         
         <div class="modal fade" id="contact-modal" tabindex="-1" role="dialog" aria-labelledby="contact-modal-label" aria-hidden="true">
@@ -92,7 +92,7 @@ let displayFooterTemplate = () => {
         </a>
     </div>`;
 
-  document.getElementById("footer").innerHTML += footerTemplate;
+    document.getElementById('footer').innerHTML += footerTemplate;
 };
 
 displayLoader();
@@ -100,53 +100,55 @@ displayLoader();
 displayHeaderTemplate();
 displayFooterTemplate();
 
-let mainLogin = (e) => {
-  if (localStorage.getItem("isLogin") === "true") {
-    localStorage.setItem("isLogin", "false");
-    location.reload();
-  }
+let mainLogin = e => {
+    if (localStorage.getItem('isLogin') === 'true') {
+        localStorage.setItem('isLogin', 'false');
+        location.reload();
+    }
 };
 
-let login = (e) => {
-  localStorage.setItem("username", "admin");
-  localStorage.setItem("password", "admin");
+let login = e => {
 
-  localStorage.setItem("isLogin", "false");
+    localStorage.setItem('username', 'admin');
+    localStorage.setItem('password', 'admin');
 
-  e.preventDefault();
-  let userElement = document.getElementById("username");
-  let passwordElement = document.getElementById("password");
+    localStorage.setItem('isLogin', 'false');
 
-  if (
-    userElement.value === localStorage.getItem("username") &&
-    passwordElement.value === localStorage.getItem("password")
-  ) {
-    localStorage.setItem("isLogin", "true");
-    alert("Successfully logged in!");
-    let loginElement = document.getElementById("login");
-    loginElement.dataset.target = "";
-    loginElement.innerText = "LOGOUT";
-    location.reload();
-  } else {
-    alert("Incorrect credentials! Login failed!");
+    e.preventDefault();
+    let userElement = document.getElementById('username');
+    let passwordElement = document.getElementById('password');
 
-    userElement.value = "";
-    passwordElement.value = "";
-  }
+    if (
+        userElement.value === localStorage.getItem('username') &&
+        passwordElement.value === localStorage.getItem('password')
+    ) {
+        localStorage.setItem('isLogin', 'true');
+        alert('Successfully logged in!');
+        let loginElement = document.getElementById('login')
+        loginElement.dataset.target = '';
+        loginElement.innerText = 'LOGOUT';
+        location.reload();
+    } else {
+        alert('Incorrect credentials! Login failed!');
+
+        userElement.value = '';
+        passwordElement.value = '';
+    }
 };
 
-let isLogin = localStorage.getItem("isLogin");
-let loginElement = document.getElementById("login");
+let isLogin = localStorage.getItem('isLogin');
+let loginElement = document.getElementById('login');
+
 
 let checkLogin = () => {
-  if (!isLogin || isLogin === "false") {
-    localStorage.clear();
-    loginElement.dataset.target = "#login-modal";
-    loginElement.innerText = "LOGIN";
-  } else if (isLogin === "true") {
-    loginElement.dataset.target = "";
-    loginElement.innerText = "LOGOUT";
-  }
-};
+    if (!isLogin || isLogin === 'false') {
+        localStorage.clear();
+        loginElement.dataset.target = '#login-modal';
+        loginElement.innerText = 'LOGIN';
+    } else if (isLogin === 'true') {
+        loginElement.dataset.target = '';
+        loginElement.innerText = 'LOGOUT';
+    }
+}
 
 checkLogin();
